@@ -1,0 +1,35 @@
+/* UI components which too small for standalone svelte component */
+/* this file added on root level -> classes available to all components */
+
+/* Touch element common styles (buttons, tags) */
+.ui-raw-btn {
+    color: inherit;
+    cursor: pointer;
+    transition: var(--ui-raw-btn-transition);
+}
+
+.ui-raw-btn:hover {
+    background-color: white !important;
+    color: black !important;
+}
+
+.ui-common-btn {
+    padding: 0.25rem 0.4rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: none;
+}
+
+/* External link styles */
+.ui-external-link {
+    color: white;
+}
+
+.ui-external-link:visited {
+    color: white;
+}
+
+.ui-external-link:hover {
+    color: black;
+    background-color: white;
+}
