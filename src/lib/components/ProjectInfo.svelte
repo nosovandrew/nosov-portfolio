@@ -47,6 +47,10 @@
 
 {#if project && isInfoVsbl}
     <div class="p-info" in:fade={{ duration: 500 }}>
+        {#if isNda(project)}
+            <img class="p-info__nda-sticker" src="/assets/images/nda-holo-sticker.png" alt="nda" />
+        {/if}
+
         <div class="p-info__header">
             <button
                 class="p-info__close-btn"
@@ -56,11 +60,6 @@
             </button>
         </div>
         <div class="p-info__content">
-            {#if isNda(project)}
-                <div class="p-info__nda-badge">
-                    {PROJECT_CATEGORIES.nda.title}
-                </div>
-            {/if}
             <!-- title -->
             <h2 class="p-info__title">{project.title.toLowerCase()}</h2>
             <!-- roles -->
@@ -138,17 +137,13 @@
         cursor: pointer;
     }
 
-    .p-info__nda-badge {
+    .p-info__nda-sticker {
         position: absolute;
         top: 30vh;
         left: 50%;
         transform: translate(-50%, -50%);
         rotate: -15deg;
-        width: fit-content;
-        font-size: 1.25rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        background-color: rgba(253, 46, 0);
+        width: 200px;
     }
 
     .p-info__content > * {
@@ -173,11 +168,5 @@
         height: 1px;
         background-color: rgba(135, 135, 135);
         margin: 0.5rem 0;
-    }
-
-    @media (min-width: 1024px) {
-        .p-info__nda-badge {
-            top: 20%;
-        }
     }
 </style>
