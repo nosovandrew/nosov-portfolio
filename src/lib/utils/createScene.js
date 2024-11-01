@@ -16,6 +16,7 @@ import { setWheelIndicator } from 'src/lib/stores/wheelIndicator';
 
 const clock = new THREE.Clock();
 const scene = new THREE.Scene();
+const textureLoader = new THREE.TextureLoader();
 const camera = new THREE.PerspectiveCamera(
     90,
     window.innerWidth / window.innerHeight,
@@ -87,8 +88,6 @@ const addModelsToScene = () => {
 
     // init common code
 
-    const textureLoader = new THREE.TextureLoader();
-
     const loadMatcapHelper = (target, matcapPath, ...restMaterialProps) => {
         const matcap = textureLoader.load(matcapPath);
         target.children.forEach((child) => {
@@ -130,21 +129,34 @@ const addModelsToScene = () => {
                 break;
             case '6703f018168b0fdc9fa8ade2':
                 // ussr wall
-                // loadMatcapHelper('assets/matcaps/gold512.png', target);
 
-                const normalMapTexture = textureLoader.load('assets/normals/concreteNormal512.jpg');
-                normalMapTexture.wrapS = THREE.RepeatWrapping;
-                normalMapTexture.wrapT = THREE.RepeatWrapping;
+                const ussrWallMapTexture = textureLoader.load('assets/normals/concreteNormal512.jpg');
+                ussrWallMapTexture.wrapS = THREE.RepeatWrapping;
+                ussrWallMapTexture.wrapT = THREE.RepeatWrapping;
 
-                const matcap = textureLoader.load('assets/matcaps/concrete512.png');
+                const ussrWallHdrEquirect = new RGBELoader().load(
+                    "assets/envs/aircraft_workshop_01_1k.hdr",
+                    () => {
+                        ussrWallHdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+                    }
+                );
+
+                const ussrWallMaterial = new THREE.MeshPhysicalMaterial({
+                    roughness: 0.25,
+                    transmission: 0.8,
+                    thickness: 1,
+                    metalness: 0.15,
+                    envMap: ussrWallHdrEquirect,
+                    normalMap: ussrWallMapTexture,
+                    clearcoatNormalScale: ussrWallMapTexture,
+                });
+
                 target.children.forEach((child) => {
-                    child.material = new THREE.MeshMatcapMaterial({
-                        matcap,
-                        normalMap: normalMapTexture,
-                    });
+                    child.material = ussrWallMaterial;
                 })
 
                 rotateModelHelper(target, [0.35, 0, 0]);
+
 
                 break;
             default:
