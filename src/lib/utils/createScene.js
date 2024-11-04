@@ -6,11 +6,19 @@ import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUnifo
 import gsap from 'gsap';
 import WheelIndicator from 'wheel-indicator';
 
+// bloom effect code
+// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+// import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
+// import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+// import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityHighPassShader.js';
+// import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
+
 import { PROJECTS } from 'src/lib/data/projects';
 import currProjectStore from 'src/lib/stores/currProject';
 import uiStateStore from 'src/lib/stores/uiState';
-import { breakpoints } from 'src/lib/styles/breakpoints';
 import { setWheelIndicator } from 'src/lib/stores/wheelIndicator';
+import { isMobileScreen } from 'src/lib/helpers/getScreenSize';
 
 // <<< Create main players >>>
 
@@ -24,6 +32,10 @@ const camera = new THREE.PerspectiveCamera(
     1000,
 );
 let renderer;
+
+// bloom effect code
+// let composer;
+// let bloomPass;
 
 // <<< Other variables >>>
 
@@ -128,35 +140,38 @@ const addModelsToScene = () => {
 
                 break;
             case '6703f018168b0fdc9fa8ade2':
-                // ussr wall
+                // zavod
 
-                const ussrWallMapTexture = textureLoader.load('assets/normals/concreteNormal512.jpg');
-                ussrWallMapTexture.wrapS = THREE.RepeatWrapping;
-                ussrWallMapTexture.wrapT = THREE.RepeatWrapping;
+                if (isMobileScreen()) {
+                    target.scale.set(0.5, 0.5, 0.5);
+                }
 
-                const ussrWallHdrEquirect = new RGBELoader().load(
+                const zavodMapTexture = textureLoader.load('assets/normals/concreteNormal512.jpg');
+                zavodMapTexture.wrapS = THREE.RepeatWrapping;
+                zavodMapTexture.wrapT = THREE.RepeatWrapping;
+                // zavodMapTexture.repeat.set(2, 2);
+
+                const zavodHdrEquirect = new RGBELoader().load(
                     "assets/envs/aircraft_workshop_01_1k.hdr",
                     () => {
-                        ussrWallHdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+                        zavodHdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
                     }
                 );
 
-                const ussrWallMaterial = new THREE.MeshPhysicalMaterial({
-                    roughness: 0.25,
-                    transmission: 0.8,
+                const zavodMaterial = new THREE.MeshPhysicalMaterial({
+                    roughness: 0.05,
+                    transmission: 0.1,
                     thickness: 1,
-                    metalness: 0.15,
-                    envMap: ussrWallHdrEquirect,
-                    normalMap: ussrWallMapTexture,
-                    clearcoatNormalScale: ussrWallMapTexture,
+                    metalness: 0.8,
+                    envMap: zavodHdrEquirect,
+                    normalMap: zavodMapTexture,
+                    clearcoatNormalScale: zavodMapTexture,
+                    clearcoatNormalScale: new THREE.Vector2(0.3),
                 });
 
                 target.children.forEach((child) => {
-                    child.material = ussrWallMaterial;
+                    child.material = zavodMaterial;
                 })
-
-                rotateModelHelper(target, [0.35, 0, 0]);
-
 
                 break;
             default:
@@ -339,16 +354,27 @@ const animate = () => {
 
     // render scene
     renderer.render(scene, camera);
+    // bloom effect code
+    // composer.render();
 
     requestAnimationFrame(animate);
 };
 
 // <<< Resize scene >>>
 
+
 const resize = () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    camera.aspect = viewportWidth / viewportHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(viewportWidth, viewportHeight);
+
+    // bloom effect code
+    // bloomPass.resolution.set(viewportWidth, viewportHeight);
+    // composer.setPixelRatio(viewportWidth / viewportHeight);
+    // composer.setSize(viewportWidth, viewportHeight);
 };
 
 // <<< Create scene (ROOT FUNC) >>>
@@ -360,6 +386,19 @@ export const createScene = async (canvasEl) => {
         antialias: true,
         canvas: canvasEl,
     });
+
+    // bloom effect code
+    // const renderPass = new RenderPass(scene, camera);
+    // bloomPass = new UnrealBloomPass(
+    //     new THREE.Vector2(window.innerWidth, window.innerHeight),
+    //     0.25,
+    //     0.1,
+    //     0.5
+    // );
+    // composer = new EffectComposer(renderer);
+    // composer.addPass(renderPass);
+    // composer.addPass(bloomPass);
+
     resize();
     await loadProjectModels(PROJECTS);
     addModelsToScene();
@@ -369,7 +408,7 @@ export const createScene = async (canvasEl) => {
     animate();
 
     // handle resize only for desktops
-    if (window.innerWidth > breakpoints.md) {
+    if (!isMobileScreen()) {
         // sync scene size with window
         window.addEventListener('resize', resize);
     }

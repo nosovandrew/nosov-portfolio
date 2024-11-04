@@ -103,7 +103,7 @@ export const PROJECTS = [
     {
         id: '6703f018168b0fdc9fa8ade2',
         categories: [PROJECT_CATEGORIES.nda],
-        modelPath: '/assets/gltfs/UssrWall/scene.gltf',
+        modelPath: '/assets/gltfs/Zavod/scene.gltf',
         title: 'Инф-ая система предприятия',
         roles: [PROJECT_ROLES.frontend, PROJECT_ROLES.design, PROJECT_ROLES.backend],
         customer: PROJECT_CUSTOMERS.nda,
