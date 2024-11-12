@@ -141,8 +141,8 @@
         position: absolute;
         top: 30vh;
         left: 50%;
-        transform: translate(-50%, -50%);
-        rotate: -15deg;
+        transform-origin: center;
+        transform: translate(-50%, -50%) rotate(10deg);
         width: 200px;
     }
 
