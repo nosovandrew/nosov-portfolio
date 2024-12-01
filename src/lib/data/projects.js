@@ -67,7 +67,7 @@ export const PROJECTS = [
     {
         id: '669185f002e51cca45001ac8',
         categories: [],
-        modelPath: '/assets/gltfs/LegoPerson/scene.gltf',
+        modelPath: '/assets/gltfs/NickMikhalevPortfolio/scene.gltf',
         title: 'Портфолио для Nick Mikhalev',
         roles: [PROJECT_ROLES.frontend, PROJECT_ROLES.design, PROJECT_ROLES.backend],
         customer: {
@@ -87,7 +87,7 @@ export const PROJECTS = [
     {
         id: '6703f00ea97e742c1081427d',
         categories: [PROJECT_CATEGORIES.nda],
-        modelPath: '/assets/gltfs/Ethereum/scene.gltf',
+        modelPath: '/assets/gltfs/CryptoExchange/scene.gltf',
         title: 'Админка крипто обменника',
         roles: [PROJECT_ROLES.frontend],
         customer: PROJECT_CUSTOMERS.nda,

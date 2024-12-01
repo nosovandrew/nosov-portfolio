@@ -3,16 +3,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
 import gsap from 'gsap';
 import WheelIndicator from 'wheel-indicator';
-
-// bloom effect code
-// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-// import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-// import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-// import { LuminosityHighPassShader } from 'three/examples/jsm/shaders/LuminosityHighPassShader.js';
-// import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
 
 import { PROJECTS } from 'src/lib/data/projects';
 import currProjectStore from 'src/lib/stores/currProject';
@@ -32,10 +25,6 @@ const camera = new THREE.PerspectiveCamera(
     1000,
 );
 let renderer;
-
-// bloom effect code
-// let composer;
-// let bloomPass;
 
 // <<< Other variables >>>
 
@@ -100,7 +89,7 @@ const addModelsToScene = () => {
 
     // init common code
 
-    const loadMatcapHelper = (target, matcapPath, ...restMaterialProps) => {
+    const setupMatcapHelper = (target, matcapPath, ...restMaterialProps) => {
         const matcap = textureLoader.load(matcapPath);
         target.children.forEach((child) => {
             child.material = new THREE.MeshMatcapMaterial({
@@ -110,16 +99,44 @@ const addModelsToScene = () => {
         })
     }
 
-    const rotateModelHelper = (target, anglesArray) => {
-        target.rotateX(anglesArray[0]);
-        target.rotateY(anglesArray[1]);
-        target.rotateZ(anglesArray[2]);
-    }
+    const setupPhysicalMatcapHelper = ({ mapTextureSrc, hdrEquirectSrc, materialOptions, target }) => {
+        let mapTexture = undefined;
+        let hdrEquirect = undefined;
 
-    const placeModelHelper = (target, coordsArray) => {
-        target.position.x = coordsArray[0];
-        target.position.y = coordsArray[1];
-        target.position.z = coordsArray[2];
+        // material optqions sample
+        // {
+        //     roughness: 0.05,
+        //     transmission: 0.1,
+        //     thickness: 1,
+        //     metalness: 0.8,
+        //     envMap: zavodHdrEquirect,
+        //     normalMap: zavodMapTexture,
+        //     clearcoatNormalScale: zavodMapTexture,
+        //     clearcoatNormalScale: new THREE.Vector2(0.3),
+        // }
+
+        if (mapTextureSrc) {
+            mapTexture = textureLoader.load(mapTextureSrc);
+            mapTexture.wrapS = THREE.RepeatWrapping;
+            mapTexture.wrapT = THREE.RepeatWrapping;
+        }
+
+        if (hdrEquirectSrc) {
+            hdrEquirect = new RGBELoader().load(hdrEquirectSrc, () => {
+                hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+            });
+        }
+
+        const material = new THREE.MeshPhysicalMaterial({
+            envMap: hdrEquirect,
+            normalMap: mapTexture,
+            clearcoatNormalScale: mapTexture,
+            ...materialOptions,
+        });
+
+        target.children.forEach((child) => {
+            child.material = material;
+        })
     }
 
     // going through models
@@ -129,49 +146,47 @@ const addModelsToScene = () => {
 
         switch (p.id) {
             case '669185f002e51cca45001ac8':
-                // lego
-                loadMatcapHelper(target, 'assets/matcaps/mix512.png');
+                // NickMikhalevPortfolio
+
+                // const rectLight1 = new THREE.RectAreaLight(0xf018e5, 15, 5, 5);
+                // rectLight1.position.set(3, 3, 0);
+                // rectLight1.lookAt(0, 0, 0);
+                // scene.add(rectLight1)
+
+                // const rectLight2 = new THREE.RectAreaLight(0x9cfff0, 5, 5, 5);
+                // rectLight2.position.set(-3, -3, 0);
+                // rectLight2.lookAt(0, 0, 0);
+                // scene.add(rectLight2)
+
+                // const rectLightHelper1 = new RectAreaLightHelper(rectLight1);
+                // rectLight1.add(rectLightHelper1);
+
+                // const rectLightHelper2 = new RectAreaLightHelper(rectLight2);
+                // rectLight2.add(rectLightHelper2);
+
+                setupMatcapHelper(target, 'assets/matcaps/metal_7.png');
 
                 break;
             case '6703f00ea97e742c1081427d':
-                // ethereum
-                loadMatcapHelper(target, 'assets/matcaps/chromium512.png');
-                rotateModelHelper(target, [0.15, 0, 0]);
+                // CryptoExchange
+
+                if (isMobileScreen()) {
+                    target.scale.set(0.8, 0.8, 0.8);
+                }
+
+                setupMatcapHelper(target, 'assets/matcaps/metal_1.png');
 
                 break;
             case '6703f018168b0fdc9fa8ade2':
-                // zavod
+                // Zavod
+
+                target.scale.set(0.85, 0.85, 0.85);
 
                 if (isMobileScreen()) {
                     target.scale.set(0.5, 0.5, 0.5);
                 }
 
-                const zavodMapTexture = textureLoader.load('assets/normals/concreteNormal512.jpg');
-                zavodMapTexture.wrapS = THREE.RepeatWrapping;
-                zavodMapTexture.wrapT = THREE.RepeatWrapping;
-                // zavodMapTexture.repeat.set(2, 2);
-
-                const zavodHdrEquirect = new RGBELoader().load(
-                    "assets/envs/aircraft_workshop_01_1k.hdr",
-                    () => {
-                        zavodHdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-                    }
-                );
-
-                const zavodMaterial = new THREE.MeshPhysicalMaterial({
-                    roughness: 0.05,
-                    transmission: 0.1,
-                    thickness: 1,
-                    metalness: 0.8,
-                    envMap: zavodHdrEquirect,
-                    normalMap: zavodMapTexture,
-                    clearcoatNormalScale: zavodMapTexture,
-                    clearcoatNormalScale: new THREE.Vector2(0.3),
-                });
-
-                target.children.forEach((child) => {
-                    child.material = zavodMaterial;
-                })
+                setupMatcapHelper(target, 'assets/matcaps/metal_3.png');
 
                 break;
             default:
@@ -354,8 +369,6 @@ const animate = () => {
 
     // render scene
     renderer.render(scene, camera);
-    // bloom effect code
-    // composer.render();
 
     requestAnimationFrame(animate);
 };
@@ -370,11 +383,6 @@ const resize = () => {
     camera.aspect = viewportWidth / viewportHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(viewportWidth, viewportHeight);
-
-    // bloom effect code
-    // bloomPass.resolution.set(viewportWidth, viewportHeight);
-    // composer.setPixelRatio(viewportWidth / viewportHeight);
-    // composer.setSize(viewportWidth, viewportHeight);
 };
 
 // <<< Create scene (ROOT FUNC) >>>
@@ -386,18 +394,6 @@ export const createScene = async (canvasEl) => {
         antialias: true,
         canvas: canvasEl,
     });
-
-    // bloom effect code
-    // const renderPass = new RenderPass(scene, camera);
-    // bloomPass = new UnrealBloomPass(
-    //     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    //     0.25,
-    //     0.1,
-    //     0.5
-    // );
-    // composer = new EffectComposer(renderer);
-    // composer.addPass(renderPass);
-    // composer.addPass(bloomPass);
 
     resize();
     await loadProjectModels(PROJECTS);
