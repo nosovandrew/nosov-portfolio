@@ -17,7 +17,7 @@
         z-index: 999;
         width: 100%;
         height: 100vh;
-        height: 100dvh;
+        height: 100svh;
         display: flex;
         flex-direction: column;
         align-items: center;
