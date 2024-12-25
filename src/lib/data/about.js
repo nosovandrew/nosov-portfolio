@@ -1,5 +1,3 @@
-import { getSiteUrl } from "src/lib/helpers/getSiteUrl";
-
 export const LINKS_COLORS = {
     contact: 'rgba(248, 229, 89, 1)',
     socialNetwork: 'rgba(134, 74, 249, 1)',
@@ -24,7 +22,7 @@ export const LINKS = [
     },
     {
         title: 'Резюме.pdf',
-        url: `${getSiteUrl()}/download/nosov-frontend-developer-cv.pdf`,
+        url: `${__APP_URL__}/download/nosov-frontend-developer-cv.pdf`,
         color: LINKS_COLORS.cv,
     },
 ]
