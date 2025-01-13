@@ -189,6 +189,18 @@ const addModelsToScene = () => {
                 setupMatcapHelper(target, 'assets/matcaps/metal_3.png');
 
                 break;
+            case '67751724f221cdc27d554560':
+                // EightiesBagDrop
+
+                target.scale.set(0.75, 0.75, 0.75);
+
+                if (isMobileScreen()) {
+                    target.scale.set(0.5, 0.5, 0.5);
+                }
+
+                setupMatcapHelper(target, 'assets/matcaps/metal_2.png');
+
+                break;
             default:
                 console.log(`Project with id ${p.id} not handled by addModelsToScene function.`)
                 break;
@@ -364,6 +376,8 @@ const animate = () => {
                 // x: '+=' + Math.sin(elapsedTime) * 0.5,
                 y: '+=' + Math.cos(elapsedTime) * 0.5,
             });
+        } else {
+            gsap.killTweensOf(target.rotation); // prevent unexpected rotation
         }
     });
 
