@@ -74,15 +74,15 @@
 
     const TECH_TAG_STYLES = [
         {
-            bgColor: 'rgba(0, 143, 109, 1)',
+            bgColor: 'rgba(255, 81, 0, 1)',
             color: 'rgba(255, 255, 255, 1)'
         },
         {
-            bgColor: 'rgba(0, 143, 109, 0.5)',
+            bgColor: 'rgba(255, 81, 0, 0.7)',
             color: 'rgba(230, 230, 230, 1)'
         },
         {
-            bgColor: 'rgba(0, 143, 109, 0.25)',
+            bgColor: 'rgba(255, 81, 0, 0.4)',
             color: 'rgba(179, 179, 179, 1)'
         },
     ]

@@ -90,7 +90,7 @@
             <div class="p-info__active-period">
                 <span>{getActivePeriod(project)}</span>
                 {#if project.activePeriod.state}
-                    <TagBtn data={project.activePeriod.state} outlined={true} />
+                    <TagBtn data={project.activePeriod.state} />
                 {/if}
             </div>
             <!-- url (optional) -->
@@ -160,7 +160,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
 
     .p-info__devider {

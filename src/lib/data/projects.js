@@ -1,19 +1,19 @@
 const PROJECT_ROLES = {
     frontend: {
         title: 'Фронтенд',
-        color: 'rgba(200, 255, 224)',
+        bgColor: 'rgba(233, 102, 248)',
     },
     backend: {
         title: 'Бэкенд',
-        color: 'rgba(133, 230, 197)',
+        bgColor: 'rgba(67, 40, 220)',
     },
     design: {
         title: 'Дизайн',
-        color: 'rgba(51, 187, 197)',
+        bgColor: 'rgba(134, 74, 249)',
     },
     founder: {
         title: 'Основатель',
-        color: 'rgba(97, 75, 195)',
+        bgColor: 'rgba(255, 52, 110)',
     },
 };
 
@@ -31,7 +31,8 @@ const PROJECT_PROGRESS_STAGES = {
     },
     archived: {
         title: 'Архив',
-        color: 'rgba(253, 46, 0)',
+        color: 'rgba(0, 0, 0)',
+        bgColor: 'rgba(200, 200, 200)',
     },
 };
 
@@ -125,7 +126,8 @@ export const PROJECTS = [
         customer: PROJECT_CUSTOMERS.personal,
         activePeriod: {
             start: new Date(2021, 0, 1),
-            end: new Date(2022, 0, 1)
+            end: new Date(2022, 0, 1),
+            state: PROJECT_PROGRESS_STAGES.archived,
         },
         url: 'https://eighties.vercel.app',
         techStack: ['Next.js v12', 'SWR', 'Styled-Components', 'MongoDB', 'GraphQL', 'Node.js Telegram Bot API'],
