@@ -1,7 +1,7 @@
 export const LINKS_COLORS = {
-    contact: 'rgba(248, 229, 89, 1)',
-    socialNetwork: 'rgba(134, 74, 249, 1)',
-    cv: 'rgba(243, 66, 19, 1)',
+    contact: 'rgba(111, 231, 78)',
+    socialNetwork: 'rgba(200, 200, 200)',
+    cv: 'rgba(200, 200, 200)',
 };
 
 export const LINKS = [
@@ -18,6 +18,11 @@ export const LINKS = [
     {
         title: 'Дипрофайл',
         url: 'https://dprofile.ru/nosov',
+        color: LINKS_COLORS.socialNetwork,
+    },
+    {
+        title: 'Гитхаб',
+        url: 'https://github.com/nosovandrew',
         color: LINKS_COLORS.socialNetwork,
     },
     {
