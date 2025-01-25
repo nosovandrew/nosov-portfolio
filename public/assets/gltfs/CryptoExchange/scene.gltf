@@ -8,14 +8,15 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Curve.017",
+			"name":"Curve.001",
 			"rotation":[
 				0.7071068286895752,
 				0,
@@ -27,12 +28,41 @@
 				16,
 				16
 			]
+		},
+		{
+			"mesh":1,
+			"name":"Curve.002",
+			"rotation":[
+				0,
+				-0.7071068286895752,
+				0.7071068286895752,
+				1.1520233300643667e-07
+			],
+			"scale":[
+				16,
+				16,
+				16
+			]
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"SVGMat",
+			"name":"SVGMat.002",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0,
+					0,
+					0,
+					1
+				],
+				"metallicFactor":0,
+				"roughnessFactor":0.4000000059604645
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"SVGMat.005",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					0,
@@ -47,7 +77,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Curve.017",
+			"name":"Curve.002",
 			"primitives":[
 				{
 					"attributes":{
@@ -58,61 +88,120 @@
 					"material":0
 				}
 			]
+		},
+		{
+			"name":"Curve.005",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":3,
+						"NORMAL":4
+					},
+					"indices":5,
+					"material":1
+				}
+			]
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":508595,
+			"count":479747,
 			"max":[
-				0.20289377868175507,
-				0.11859124898910522,
-				0.1682736575603485
+				0.19105073809623718,
+				0.12455525994300842,
+				0.15244948863983154
 			],
 			"min":[
-				-0.20968155562877655,
-				0.000741371070034802,
-				-0.16025717556476593
+				-0.19241514801979065,
+				0.004184686113148928,
+				-0.15339753031730652
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":508595,
+			"count":479747,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5125,
-			"count":762924,
+			"count":719640,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":3,
+			"componentType":5126,
+			"count":445256,
+			"max":[
+				0.19191822409629822,
+				0.11896971613168716,
+				0.14947256445884705
+			],
+			"min":[
+				-0.1932005137205124,
+				0.0052144527435302734,
+				-0.1506151407957077
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":4,
+			"componentType":5126,
+			"count":445256,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":5,
+			"componentType":5125,
+			"count":667884,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":6103140,
+			"byteLength":5756964,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":6103140,
-			"byteOffset":6103140,
+			"byteLength":5756964,
+			"byteOffset":5756964,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3051696,
-			"byteOffset":12206280,
+			"byteLength":2878560,
+			"byteOffset":11513928,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":5343072,
+			"byteOffset":14392488,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":5343072,
+			"byteOffset":19735560,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2671536,
+			"byteOffset":25078632,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":15257976,
+			"byteLength":27750168,
 			"uri":"scene.bin"
 		}
 	]
