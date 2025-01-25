@@ -107,101 +107,101 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":479747,
+			"count":28778,
 			"max":[
-				0.19105073809623718,
-				0.12455525994300842,
-				0.15244948863983154
+				0.1910606175661087,
+				0.12453340739011765,
+				0.15247423946857452
 			],
 			"min":[
-				-0.19241514801979065,
-				0.004184686113148928,
-				-0.15339753031730652
+				-0.19240246713161469,
+				0.004198900889605284,
+				-0.15338316559791565
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":479747,
+			"count":28778,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
-			"componentType":5125,
-			"count":719640,
+			"componentType":5123,
+			"count":28782,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":3,
 			"componentType":5126,
-			"count":445256,
+			"count":16688,
 			"max":[
-				0.19191822409629822,
-				0.11896971613168716,
-				0.14947256445884705
+				0.19195492565631866,
+				0.11892485618591309,
+				0.1494961529970169
 			],
 			"min":[
-				-0.1932005137205124,
-				0.0052144527435302734,
-				-0.1506151407957077
+				-0.1931895762681961,
+				0.005235778167843819,
+				-0.15068207681179047
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":445256,
+			"count":16688,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":5,
-			"componentType":5125,
-			"count":667884,
+			"componentType":5123,
+			"count":16692,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":5756964,
+			"byteLength":345336,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":5756964,
-			"byteOffset":5756964,
+			"byteLength":345336,
+			"byteOffset":345336,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2878560,
-			"byteOffset":11513928,
+			"byteLength":57564,
+			"byteOffset":690672,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":5343072,
-			"byteOffset":14392488,
+			"byteLength":200256,
+			"byteOffset":748236,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":5343072,
-			"byteOffset":19735560,
+			"byteLength":200256,
+			"byteOffset":948492,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2671536,
-			"byteOffset":25078632,
+			"byteLength":33384,
+			"byteOffset":1148748,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":27750168,
+			"byteLength":1182132,
 			"uri":"scene.bin"
 		}
 	]
