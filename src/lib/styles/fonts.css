@@ -2,21 +2,25 @@
 @font-face {
     font-family: 'GeistMono';
     font-weight: 300;
-    src: url('./fonts/GeistMono-Light.otf') format('opentype');
+    src: url('/assets/fonts/GeistMono-Light.woff2') format('opentype');
+    font-display: swap;
 }
 @font-face {
     font-family: 'GeistMono';
     font-weight: 500;
-    src: url('./fonts/GeistMono-Medium.otf') format('opentype');
+    src: url('/assets/fonts/GeistMono-Medium.woff2') format('opentype');
+    font-display: swap;
 }
 @font-face {
     font-family: 'GeistMono';
     font-weight: 700;
-    src: url('./fonts/GeistMono-Bold.otf') format('opentype');
+    src: url('/assets/fonts/GeistMono-Bold.woff2') format('opentype');
+    font-display: swap;
 }
 /* Link heading font MV-Skifer */
 @font-face {
     font-family: 'MV-Skifer';
     font-weight: 500;
-    src: url('./fonts/MV-Skifer.otf') format('opentype');
+    src: url('/assets/fonts/MV-Skifer.woff2') format('opentype');
+    font-display: swap;
 }
