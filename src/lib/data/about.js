@@ -15,11 +15,11 @@ export const LINKS = [
         url: 'mailto:drenosov@yandex.ru',
         color: LINKS_COLORS.contact,
     },
-    {
-        title: 'Дипрофайл',
-        url: 'https://dprofile.ru/nosov',
-        color: LINKS_COLORS.socialNetwork,
-    },
+    // {
+    //     title: 'Дипрофайл',
+    //     url: 'https://dprofile.ru/nosov',
+    //     color: LINKS_COLORS.socialNetwork,
+    // },
     {
         title: 'Гитхаб',
         url: 'https://github.com/nosovandrew',

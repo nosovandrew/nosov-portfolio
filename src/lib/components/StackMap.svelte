@@ -11,7 +11,7 @@
             priority: 1,
         },
         {
-            title: 'Next.js',
+            title: 'Next.js 14+',
             priority: 1,
         },
         {
@@ -43,10 +43,6 @@
             priority: 2,
         },
         {
-            title: 'SQL',
-            priority: 2,
-        },
-        {
             title: 'Three.js',
             priority: 3,
         },
@@ -59,15 +55,15 @@
             priority: 3,
         },
         {
+            title: 'PostgreSQL',
+            priority: 3,
+        },
+        {
             title: 'Docker',
             priority: 3,
         },
         {
-            title: 'Nginx',
-            priority: 3,
-        },
-        {
-            title: 'IIS',
+            title: 'Vercel',
             priority: 3,
         },
     ];
