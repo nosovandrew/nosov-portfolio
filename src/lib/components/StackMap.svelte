@@ -2,6 +2,10 @@
     import TagBtn from 'src/lib/components/TagBtn.svelte';
 
     const TECHS = [
+        // {
+        //     title: 'Figma',
+        //     priority: 1,
+        // },
         {
             title: 'JavaScript',
             priority: 1,
@@ -19,11 +23,20 @@
             priority: 1,
         },
         {
-            title: 'Express',
+            title: 'SCSS',
+            priority: 1,
+        },
+        
+        {
+            title: 'React Context API',
             priority: 1,
         },
         {
             title: 'Node.js',
+            priority: 1,
+        },
+        {
+            title: 'Express.js',
             priority: 1,
         },
         {
@@ -35,55 +48,56 @@
             priority: 1,
         },
         {
+            title: 'Docker',
+            priority: 1,
+        },
+        {
+            title: 'Vercel',
+            priority: 1,
+        },
+        {
             title: 'TypeScript',
-            priority: 2,
+            priority: 3,
         },
         {
             title: 'Svelte',
-            priority: 2,
+            priority: 3,
         },
+        // {
+        //     title: 'Three.js',
+        //     priority: 3,
+        // },
         {
-            title: 'SQL',
-            priority: 2,
-        },
-        {
-            title: 'Three.js',
+            title: 'Redux Toolkit',
             priority: 3,
         },
         {
-            title: 'Redux',
+            title: 'GraphQL(Apollo)',
             priority: 3,
         },
         {
-            title: 'GraphQL',
+            title: 'PostgreSQL',
             priority: 3,
         },
         {
-            title: 'Docker',
+            title: 'MSSQL',
             priority: 3,
-        },
-        {
-            title: 'Nginx',
-            priority: 3,
-        },
-        {
-            title: 'IIS',
-            priority: 3,
-        },
+        }
     ];
 
     const TECH_TAG_STYLES = [
         {
-            bgColor: 'rgba(255, 81, 0, 1)',
-            color: 'rgba(255, 255, 255, 1)'
+            bgColor: 'rgba(200, 200, 200, 1)',
+            color: 'rgba(0, 0, 0, 1)'
         },
         {
-            bgColor: 'rgba(255, 81, 0, 0.7)',
-            color: 'rgba(230, 230, 230, 1)'
+            // 2nd priority is depricated (bad in current color scheme)
+            bgColor: 'rgba(200, 200, 200, 0.5)',
+            color: 'rgba(150, 150, 150, 1)'
         },
         {
-            bgColor: 'rgba(255, 81, 0, 0.4)',
-            color: 'rgba(179, 179, 179, 1)'
+            bgColor: 'rgba(200, 200, 200, 0.25)',
+            color: 'rgba(200, 200, 200, 1)'
         },
     ]
 
