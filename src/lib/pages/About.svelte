@@ -64,6 +64,10 @@
         gap: 0.25rem;
     }
 
+    .about-page {
+        margin-bottom: 5rem;
+    }
+
     @media (min-width: 1024px) {
         .about-page {
             /* about header height on desktop */
