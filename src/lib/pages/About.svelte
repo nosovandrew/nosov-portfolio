@@ -65,13 +65,14 @@
     }
 
     .about-page {
-        margin-bottom: 5rem;
+        margin-bottom: 2rem;
     }
 
     @media (min-width: 1024px) {
         .about-page {
             /* about header height on desktop */
             margin-top: 5rem;
+            margin-bottom: 5rem;
         }
     }
 </style>
