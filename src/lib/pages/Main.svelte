@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
 
     import uiStateStore from 'src/lib/stores/uiState';
+    import { turnOnWheelIndicator } from 'src/lib/stores/wheelIndicator';
 
     import Layout from 'src/lib/components/Layout.svelte';
     import ProjectInfo from 'src/lib/components/ProjectInfo.svelte';
@@ -13,6 +14,7 @@
     $: ({ isInfoVsbl, isInfoVsblAtLeastOnce } = $uiStateStore);
 
     uiStateStore.set('isMainCanvasVsbl', true); // show main canvas
+    turnOnWheelIndicator(); // activate custom scrolling behaviour
 </script>
 
 <svelte:head>

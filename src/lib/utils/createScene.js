@@ -10,7 +10,7 @@ import WheelIndicator from 'wheel-indicator';
 import { PROJECTS } from 'src/lib/data/projects';
 import currProjectStore from 'src/lib/stores/currProject';
 import uiStateStore from 'src/lib/stores/uiState';
-import { setWheelIndicator } from 'src/lib/stores/wheelIndicator';
+import { setWheelIndicator, turnOffWheelIndicator } from 'src/lib/stores/wheelIndicator';
 import { isMobileScreen } from 'src/lib/helpers/getScreenSize';
 
 // <<< Create main players >>>
@@ -35,9 +35,11 @@ const loadedProjects = []; // projects with loaded gltf obj
 let currModelIdx = 0; // current model index
 let isScrollAllowed; // variable for controlling scrolling possibility
 let isInfoVsbl; // variable for controlling whether project info is visible or not
+let isMainCanvasVsbl; // variable for checking is canvas visible on screen
 uiStateStore.subscribe((state) => {
-    isScrollAllowed = state.isScrollAllowed
-    isInfoVsbl = state.isInfoVsbl
+    isScrollAllowed = state.isScrollAllowed;
+    isInfoVsbl = state.isInfoVsbl;
+    isMainCanvasVsbl = state.isMainCanvasVsbl;
 }); // sinc with store
 
 // <<< Set camera on default position >>>
@@ -313,9 +315,9 @@ const attachScrollHandler = (canvasEl) => {
     const wi = new WheelIndicator({
         elem: window,
         callback: (e) => {
-            // if info is visible -> disable scrolling models, enable default scroll of page
-            if (isInfoVsbl) {
-                wi.turnOff();
+            // if main canvas is not visible OR if info is visible -> disable scrolling models, enable default scroll of page
+            if (!isMainCanvasVsbl || isInfoVsbl) {
+                turnOffWheelIndicator();
 
                 return;
             }
